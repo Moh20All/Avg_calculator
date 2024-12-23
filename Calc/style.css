@@ -1,0 +1,127 @@
+.gradient-bg {
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+.input-field {
+  @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all;
+}
+
+.category-header {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+
+.calculate-btn {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  transition: all 0.3s ease;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
+}
+
+input[type="number"] {
+  @apply bg-white border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 rounded-lg px-3 py-2 w-20;
+  transition: all 0.2s ease;
+}
+
+input[type="number"]:hover {
+  border-color: #4b6cb7;
+}
+
+input[type="number"]:focus {
+  box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.2);
+}
+
+.module-row {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.module-row:hover {
+  background: rgba(75, 108, 183, 0.05);
+}
+
+.module-row td {
+  border-right: 1px solid #e5e7eb;
+}
+
+.module-row td:last-child {
+  border-right: none;
+}
+
+.json-output {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+}
+
+table {
+  border: 2px solid #e5e7eb;
+}
+
+th {
+  border-bottom: 2px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  background-color: #f8fafc;
+}
+
+th:last-child {
+  border-right: none;
+}
+
+input[readonly] {
+  background-color: #f8fafc;
+  border-color: #e5e7eb;
+}
+
+/* Current field highlight */
+input[type="number"]:focus {
+  outline: none;
+  border-color: #4b6cb7;
+  box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.2);
+  background-color: #fff;
+}
+
+/* Visual feedback for active row */
+.module-row:has(input:focus) {
+  background-color: rgba(75, 108, 183, 0.05);
+}
+.gradient-bg {
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+.category-header {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+.calculate-btn {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  transition: all 0.3s ease;
+}
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
+}
+.module-row {
+  transition: all 0.2s ease;
+}
+.module-row:hover {
+  background: rgba(75, 108, 183, 0.05);
+}
+.result-table tr:nth-child(even) {
+  background: rgba(75, 108, 183, 0.05);
+}

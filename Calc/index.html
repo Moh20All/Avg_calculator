@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester Grade Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+<body class="gradient-bg min-h-screen py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Semester Grade Calculator</h1>
+            <p class="text-gray-600">Calculate your semester average with ease</p>
+        </div>
+
+        <div class="card p-6 mb-8">
+            <div class="overflow-x-auto">
+                <table class="w-full border-2 border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-gray-600 border-r">Module</th>
+                            <th class="px-6 py-3 text-left text-gray-600 border-r">Coefficient</th>
+                            <th class="px-6 py-3 text-left text-gray-600 border-r">TP</th>
+                            <th class="px-6 py-3 text-left text-gray-600 border-r">TD</th>
+                            <th class="px-6 py-3 text-left text-gray-600">Exam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- UE Fondamentales -->
+                        <tr>
+                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Fondamentales</td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Réseaux avancés 1</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Algorithmique avancée</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Systèmes distribués</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+
+                        <!-- UE Méthodologique -->
+                        <tr>
+                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Méthodologique</td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Machine Learning</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="2" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" placeholder="TP"></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">XML et services web</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="2" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+
+                        <!-- UE Transversale -->
+                        <tr>
+                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Transversale</td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Anglais 1</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="1" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="tp" value=""></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+                        <tr class="module-row border-b">
+                            <td class="px-6 py-4 border-r">Entreprenariat</td>
+                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="1" readonly disabled></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="tp" value=""></td>
+                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
+                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <button onclick="calculateAverage()" class="calculate-btn text-white font-semibold px-8 py-3 rounded-lg">
+                    Calculate Average
+                </button>
+            </div>
+            <div id="downloadSection" class="mt-8 hidden flex justify-center">
+              <button onclick="downloadPDF()" class="calculate-btn text-white font-semibold px-8 py-3 rounded-lg">
+                  Download PDF
+              </button>
+          </div>
+            <div id="result" class="mt-8 hidden">
+                <div class="text-center text-2xl font-bold text-gray-800 mb-6">
+                    Global Average: <span id="globalAverage" class="text-blue-600"></span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-2 border-gray-200 result-table">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-6 py-3 text-left">Module</th>
+                                <th class="px-6 py-3 text-left">Coefficient</th>
+                                <th class="px-6 py-3 text-left">TD</th>
+                                <th class="px-6 py-3 text-left">TP</th>
+                                <th class="px-6 py-3 text-left">Exam</th>
+                                <th class="px-6 py-3 text-left">Average</th>
+                                <th class="px-6 py-3 text-left">Weighted Sum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
