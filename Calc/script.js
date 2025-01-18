@@ -45,7 +45,11 @@ function calculateAverage() {
   });
 
   const globalAverage = totalWeightedSum / totalCoefficient;
+  const postData = createPostData(globalAverage);
+    console.log("Generated Post Data:", postData);
   
+    // Call the POST function
+    postToGoogleSheet(postData);
   // Display results
   document.getElementById('result').classList.remove('hidden');
   document.getElementById('globalAverage').textContent = globalAverage.toFixed(2);
@@ -70,6 +74,55 @@ function calculateAverage() {
       tbody.appendChild(row);
   });
 }
+
+// Function to generate a random ID
+function generateRandomID(length = 10) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  }
+  
+  // Function to get the current timestamp
+  function getCurrentTimestamp() {
+    const now = new Date();
+    return now.toISOString(); // Returns ISO 8601 format (e.g., 2025-01-18T12:34:56.789Z)
+  }
+  
+  // Function to create POST data
+  function createPostData(globalAverage) {
+    return {
+      id: generateRandomID(),
+      timestamp: getCurrentTimestamp(),
+      deviceName: "", // Leave blank as per requirement
+      globalAverage: globalAverage || 0, // Default to 0 if no global average is provided
+    };
+  }
+  
+  // Function to make POST request to Google Sheet
+  async function postToGoogleSheet(postData) {
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyTMcY8MCtkA8yitn3TtDLXz3i3aTG4h6CBRbNMpFxoZCURnqUrc6OpRTR4Gq_lwGApYQ/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+        mode: "no-cors",
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Data successfully posted:", result);
+      } else {
+        console.error("Failed to post data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  }
 function downloadPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
