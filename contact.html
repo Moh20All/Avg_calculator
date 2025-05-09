@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Master Avg Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4b6cb7;
+      --primary-dark: #1e3c72;
+      --accent: #3785dd;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+      background-attachment: fixed;
+    }
+    
+    .primary-gradient {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+    
+    .text-gradient {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hover-scale {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-scale:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(75, 108, 183, 0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .animate-delay-1 { animation-delay: 0.1s; }
+    .animate-delay-2 { animation-delay: 0.2s; }
+    .animate-delay-3 { animation-delay: 0.3s; }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .contact-card {
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .social-icon {
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+      background-color: var(--primary);
+      color: white !important;
+    }
+    
+    .form-input {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(209, 213, 219, 0.5);
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.15);
+    }
+    
+    .submit-button {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .submit-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+    
+    .submit-button:hover::before {
+      left: 0;
+    }
+    
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
+    }
+  </style>
+</head>
+<body class="gradient-bg text-gray-800 flex flex-col min-h-screen">
+
+<!-- Navigation Bar -->
+<nav class="bg-white/90 backdrop-blur-sm shadow-lg fixed w-full top-0 z-10">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="relative group">
+        <img src="UMKBiskra_Logo.png" alt="UMKB Logo" class="h-10 transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 rounded-full bg-blue-500/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+      </div>
+      <div class="relative group">
+        <img src="core.png" alt="MOH Logo" class="h-10 transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 rounded-full bg-blue-500/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+      </div>
+      <h1 class="text-lg font-bold text-gradient">University Mohamed Khider Biskra</h1>
+    </div>
+
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="index.html" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+        <i class="bi bi-house-door mr-1"></i> Home
+      </a>
+      <a href="#" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center text-blue-700">
+        <i class="bi bi-envelope mr-1"></i> Contact
+      </a>
+      <a href="About.html" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+        <i class="bi bi-info-circle mr-1"></i> About
+      </a>
+      <a href="https://moh20all.github.io/Portofolio-2024/" target="_blank" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+        <i class="bi bi-briefcase mr-1"></i> Portfolio
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto flex-grow mt-24 px-4 py-10">
+  <!-- Header Section -->
+  <div class="text-center mb-12 animate-fadeInUp">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+      <span class="text-gradient">Contact Us</span>
+    </h1>
+    <p class="text-xl mt-2 text-gray-700">Get in touch with questions, feedback, or bug reports</p>
+    <div class="w-20 h-1 primary-gradient mx-auto my-4 rounded-full"></div>
+  </div>
+
+  <div class="flex flex-col lg:flex-row items-stretch gap-8 max-w-6xl mx-auto">
+    <!-- Contact Form Card -->
+    <div class="lg:w-2/3 animate-fadeInUp animate-delay-1">
+      <div class="contact-card bg-white/80 rounded-2xl shadow-lg p-8 h-full">
+        <h3 class="text-2xl font-bold mb-6 flex items-center">
+          <i class="bi bi-envelope-paper mr-2 text-blue-600"></i> Send a Message
+        </h3>
+        
+        <form id="contactForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input type="text" id="name" name="name" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Enter your name" required>
+            </div>
+            <div>
+              <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Enter your email" required>
+            </div>
+          </div>
+          
+          <div>
+            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-input w-full px-4 py-3 rounded-lg" placeholder="What is this about?" required>
+          </div>
+          
+          <div>
+            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+            <textarea id="message" name="message" rows="6" class="form-input w-full px-4 py-3 rounded-lg resize-none" placeholder="Type your message here..." required></textarea>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="submit" class="submit-button px-8 py-3 rounded-lg text-white font-semibold flex items-center">
+              <i class="bi bi-send-fill mr-2"></i> Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Contact Info Card -->
+    <div class="lg:w-1/3 animate-fadeInUp animate-delay-2">
+      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 h-full">
+        <h3 class="text-2xl font-bold mb-6 flex items-center">
+          <i class="bi bi-info-circle mr-2 text-blue-600"></i> Contact Information
+        </h3>
+        
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i class="bi bi-geo-alt text-blue-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800">Location</h4>
+              <p class="text-gray-600">University Mohamed Khider Biskra<br>Department of Computer Science<br>Biskra, Algeria</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i class="bi bi-envelope text-blue-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800">Email</h4>
+              <p class="text-gray-600">m.allali@univ-biskra.dz</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i class="bi bi-github text-blue-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800">GitHub</h4>
+              <p class="text-gray-600">
+                <a href="https://github.com/Moh20All" class="text-blue-600 hover:underline">github.com/Moh20All</a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="pt-6 border-t border-gray-200 mt-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Connect with me:</h4>
+            <div class="flex space-x-4">
+              <a href="https://github.com/Moh20All?tab=repositories" class="social-icon text-gray-600 hover:text-white" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/" class="social-icon text-gray-600 hover:text-white" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/moh.jsx/" class="social-icon text-gray-600 hover:text-white" target="_blank">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://moh20all.github.io/Portofolio-2024/" class="social-icon text-gray-600 hover:text-white" target="_blank">
+                <i class="fas fa-laptop"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white/80 backdrop-blur-sm text-gray-600 py-6 mt-12 shadow-inner">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <img src="UMKBiskra_Logo.png" alt="UMKB Logo" class="h-8 inline-block mr-2">
+        <span>© 2024 University Mohamed Khider Biskra</span>
+      </div>
+      <div class="flex space-x-4">
+        <a href="https://github.com/Moh20All" class="text-gray-500 hover:text-blue-700 transition-colors">
+          <i class="bi bi-github text-xl"></i>
+        </a>
+        <a href="#" class="text-gray-500 hover:text-blue-700 transition-colors">
+          <i class="bi bi-linkedin text-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/moh.jsx/" class="text-gray-500 hover:text-blue-700 transition-colors">
+          <i class="bi bi-instagram text-xl"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple form handling script
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // In a real application, you would send this data to a server
+    // For now, we'll just show an alert
+    alert(`Thank you for your message, ${name}!\n\nWe'll get back to you at ${email} soon.`);
+    
+    // Reset the form
+    this.reset();
+  });
+</script>
+
+</body>
+</html> 

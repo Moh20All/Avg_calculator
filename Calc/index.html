@@ -4,133 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semester Grade Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-
 </head>
-<body class="gradient-bg min-h-screen py-8 px-4">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">Semester Grade Calculator</h1>
-            <p class="text-gray-600">Calculate your semester average with ease</p>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg fixed w-full top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="relative group">
+                    <img src="../UMKBiskra_Logo.png" alt="UMKB Logo" class="h-10 transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 rounded-full bg-blue-500/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                </div>
+                <div class="relative group">
+                    <img src="../core.png" alt="UMKB Logo" class="h-10 transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 rounded-full bg-blue-500/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                </div>
+                <h1 class="text-lg font-bold text-gradient">University Mohamed Khider Biskra</h1>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="../index.html" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+                    <i class="bi bi-house-door mr-1"></i> Home
+                </a>
+                <a href="../contact.html" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+                    <i class="bi bi-envelope mr-1"></i> Contact
+                </a>
+                <a href="../About.html" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+                    <i class="bi bi-info-circle mr-1"></i> About
+                </a>
+                <a href="https://moh20all.github.io/Portofolio-2024/" target="_blank" class="nav-link text-gray-700 hover:text-blue-700 font-medium transition duration-200 flex items-center">
+                    <i class="bi bi-briefcase mr-1"></i> Portfolio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto pt-24 px-4 py-8">
+        <!-- Header section -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-gray-800 mb-3">
+                <span class="text-gradient">Semester Grade Calculator</span>
+            </h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Calculate your semester average with precision and ease. Track your academic progress in a beautiful interface.</p>
+            <h2 id="title" class="text-2xl font-semibold text-gray-700 mt-4"></h2>
         </div>
 
-        <div class="card p-6 mb-8">
-            <div class="overflow-x-auto">
-                <table class="w-full border-2 border-gray-200">
-                    <thead>
-                        <tr>
-                            <th class="px-6 py-3 text-left text-gray-600 border-r">Module</th>
-                            <th class="px-6 py-3 text-left text-gray-600 border-r">Coefficient</th>
-                            <th class="px-6 py-3 text-left text-gray-600 border-r">TP</th>
-                            <th class="px-6 py-3 text-left text-gray-600 border-r">TD</th>
-                            <th class="px-6 py-3 text-left text-gray-600">Exam</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- UE Fondamentales -->
-                        <tr>
-                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Fondamentales</td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Réseaux avancés 1</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Algorithmique avancée</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Systèmes distribués</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="3" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="td w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TD"></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-
-                        <!-- UE Méthodologique -->
-                        <tr>
-                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Méthodologique</td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Machine Learning</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="2" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" placeholder="TP"></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">XML et services web</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="2" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="tp w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="TP"></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-
-                        <!-- UE Transversale -->
-                        <tr>
-                            <td colspan="5" class="category-header px-6 py-3 text-white font-semibold">UE Transversale</td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Anglais 1</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="1" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="tp" value=""></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-                        <tr class="module-row border-b">
-                            <td class="px-6 py-4 border-r">Entreprenariat</td>
-                            <td class="px-6 py-4 border-r"><input type="number" class="coef w-20 px-3 py-2 border rounded" value="1" readonly disabled></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="tp" value=""></td>
-                            <td class="px-6 py-4 border-r"><input type="hidden" class="td" value=""></td>
-                            <td class="px-6 py-4"><input type="number" class="exam w-20 px-3 py-2 border rounded" min="0" max="20" step="0.5" placeholder="Exam"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="mt-8 flex justify-center">
-                <button onclick="calculateAverage()" class="calculate-btn text-white font-semibold px-8 py-3 rounded-lg">
-                    Calculate Average
-                </button>
-            </div>
-            <div id="downloadSection" class="mt-8 hidden flex justify-center">
-              <button onclick="downloadPDF()" class="calculate-btn text-white font-semibold px-8 py-3 rounded-lg">
-                  Download PDF
-              </button>
-          </div>
-            <div id="result" class="mt-8 hidden">
-                <div class="text-center text-2xl font-bold text-gray-800 mb-6">
-                    Global Average: <span id="globalAverage" class="text-blue-600"></span>
+        <!-- Semester Tabs -->
+        <div class="mb-6">
+            <div class="flex justify-center">
+                <div class="semester-tabs inline-flex rounded-md shadow-sm p-1 bg-white/80 backdrop-blur-sm">
+                    <button id="semester1-tab" class="semester-tab active px-6 py-3 text-base font-medium rounded-md transition-all duration-200 flex items-center">
+                        <i class="bi bi-1-circle-fill mr-2"></i> Semester 1
+                    </button>
+                    <button id="semester2-tab" class="semester-tab px-6 py-3 text-base font-medium rounded-md transition-all duration-200 flex items-center">
+                        <i class="bi bi-2-circle-fill mr-2"></i> Semester 2
+                    </button>
                 </div>
-                <div class="overflow-x-auto">
+            </div>
+        </div>
+
+        <!-- Main card -->
+        <div class="card p-8 mb-8 shadow-lg">
+            <!-- Instructions section -->
+            <div class="info-card mb-6">
+                <div class="flex items-start">
+                    <div class="text-primary mr-3 mt-1">
+                        <i class="bi bi-info-circle-fill text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2 text-gray-800">Instructions</h3>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Enter your grades for each module (on a scale of 0-20)</li>
+                            <li>Some modules may only have Exam grades</li>
+                            <li>Click "Calculate Average" when you're done</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mt-4 mb-2 text-gray-800">Calculation Method</h3>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Exam: 50% of module grade</li>
+                            <li>TP & TD: 50% of module grade (when both exist, each counts for 25%)</li>
+                            <li>When only one of TP or TD exists, it counts for 50%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade entry table -->
+            <div class="overflow-x-auto scrollbar-custom" id="table-container">
+                <!-- Table will be generated dynamically -->
+            </div>
+
+            <!-- Action buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <button id="calculate_button" class="calculate-btn flex items-center justify-center text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                    <i class="bi bi-calculator mr-2"></i> Calculate Average
+                </button>
+                <div id="downloadSection" class="hidden">
+                    <button onclick="downloadPDF()" id="download_button" class="download-btn flex items-center justify-center text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                        <i class="bi bi-file-earmark-pdf mr-2"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Results section (hidden initially) -->
+            <div id="result" class="mt-10 hidden">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Results Summary</h3>
+                    <div class="flex items-center justify-center">
+                        <span class="text-3xl font-bold">Global Average: </span>
+                        <span id="globalAverage" class="text-3xl ml-2 font-bold text-blue-600"></span>
+          </div>
+                </div>
+                <div class="overflow-x-auto scrollbar-custom">
                     <table class="w-full border-2 border-gray-200 result-table">
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="px-6 py-3 text-left">Module</th>
-                                <th class="px-6 py-3 text-left">Coefficient</th>
-                                <th class="px-6 py-3 text-left">TD</th>
-                                <th class="px-6 py-3 text-left">TP</th>
-                                <th class="px-6 py-3 text-left">Exam</th>
-                                <th class="px-6 py-3 text-left">Average</th>
-                                <th class="px-6 py-3 text-left">Weighted Sum</th>
+                                <th class="px-6 py-3 text-left border-r">Module</th>
+                                <th class="px-6 py-3 text-left border-r">Coefficient</th>
+                                <th class="px-6 py-3 text-left border-r">TP</th>
+                                <th class="px-6 py-3 text-left border-r">TD</th>
+                                <th class="px-6 py-3 text-left border-r">Exam</th>
+                                <th class="px-6 py-3 text-left border-r">Average</th>
+                                <th class="px-6 py-3 text-left border-r">Weighted Sum</th>
                             </tr>
                         </thead>
                         <tbody id="resultTableBody"></tbody>
+                        <tfoot id="resultTableFoot">
+                            <!-- Summary will be added here -->
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
+        
+        <!-- Footer -->
+        <div class="text-center text-gray-600 text-sm mt-6">
+            <p>University Mohamed Khider Biskra</p>
+            <p>Department of Computer Science</p>
+            <p class="mt-2 text-xs">&copy; 2024 All rights reserved.</p>
+        </div>
     </div>
-
 <script src="script.js"></script>
+    
+    <!-- Tab switching script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedField = urlParams.get('field') || 'RTIC';
+            const selectedSemester = urlParams.get('semester') || '1';
+            
+            const semester1Tab = document.getElementById('semester1-tab');
+            const semester2Tab = document.getElementById('semester2-tab');
+            
+            // Set active tab based on current semester
+            if (selectedSemester === '1') {
+                semester1Tab.classList.add('active');
+                semester2Tab.classList.remove('active');
+            } else {
+                semester2Tab.classList.add('active');
+                semester1Tab.classList.remove('active');
+            }
+            
+            // Semester 1 tab click
+            semester1Tab.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    semester2Tab.classList.remove('active');
+                    window.location.href = `index.html?field=${selectedField}&semester=1`;
+                }
+            });
+            
+            // Semester 2 tab click
+            semester2Tab.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    semester1Tab.classList.remove('active');
+                    
+                    // For fields other than RTIC, show alert and stay on semester 1
+                    if (selectedField !== 'RTIC') {
+                        alert('Semester 2 modules are currently only available for RTIC. Please check back later for other fields!');
+                        window.location.href = `index.html?field=${selectedField}&semester=1`;
+                    } else {
+                        window.location.href = `index.html?field=${selectedField}&semester=2`;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
