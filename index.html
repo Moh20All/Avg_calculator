@@ -170,52 +170,87 @@
   <div class="container mx-auto flex-grow flex flex-col items-center justify-center mt-24 px-4 py-10">
     <div class="text-center mb-12 animate-fadeInUp">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        <span class="text-gradient">Master Average Calculator</span>
+        <span class="text-gradient">University Grade Calculator</span>
       </h1>
       <p class="text-xl mt-2 text-gray-700">Department of Computer Science</p>
       <div class="w-20 h-1 primary-gradient mx-auto my-4 rounded-full"></div>
       <p class="text-lg text-gray-600 max-w-md mx-auto">
-        Calculate your semester grades with precision and ease. Select your field below to get started:
+        Calculate your semester grades with precision and ease. Select your level below to get started:
       </p>
     </div>
 
-    <!-- Buttons -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 w-full max-w-2xl animate-fadeInUp animate-delay-2">
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('RTIC')">
-        <i class="bi bi-hdd-network text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">RTIC</span>
-        <span class="text-xs text-gray-500 mt-1">Networks & Communications</span>
-      </button>
+    <!-- License Section -->
+    <div class="w-full max-w-4xl mb-12 animate-fadeInUp animate-delay-1">
+      <div class="flex items-center mb-4">
+        <h2 class="text-2xl font-bold text-gray-800"><span class="text-gradient">License</span></h2>
+        <div class="flex-grow h-0.5 ml-4 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full"></div>
+      </div>
       
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('IA')">
-        <i class="bi bi-cpu text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">IA</span>
-        <span class="text-xs text-gray-500 mt-1">Artificial Intelligence</span>
-      </button>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateToLicense('L1')">
+          <i class="bi bi-1-circle-fill text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">License 1</span>
+          <span class="text-xs text-gray-500 mt-1">First Year</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateToLicense('L2')">
+          <i class="bi bi-2-circle-fill text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">License 2</span>
+          <span class="text-xs text-gray-500 mt-1">Second Year</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateToLicense('L3')">
+          <i class="bi bi-3-circle-fill text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">License 3</span>
+          <span class="text-xs text-gray-500 mt-1">Third Year</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Master Section -->
+    <div class="w-full max-w-4xl animate-fadeInUp animate-delay-2">
+      <div class="flex items-center mb-4">
+        <h2 class="text-2xl font-bold text-gray-800"><span class="text-gradient">Master</span></h2>
+        <div class="flex-grow h-0.5 ml-4 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full"></div>
+      </div>
       
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('GLSD')">
-        <i class="bi bi-code-square text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">GLSD</span>
-        <span class="text-xs text-gray-500 mt-1">Software Engineering</span>
-      </button>
-      
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('IVA')">
-        <i class="bi bi-gpu-card text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">IVA</span>
-        <span class="text-xs text-gray-500 mt-1">Image & Vision Processing</span>
-      </button>
-      
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('SIOD')">
-        <i class="bi bi-database text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">SIOD</span>
-        <span class="text-xs text-gray-500 mt-1">Information Systems</span>
-      </button>
-      
-      <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('PRO')">
-        <i class="bi bi-briefcase text-2xl mb-2"></i>
-        <span class="font-semibold text-lg">PRO</span>
-        <span class="text-xs text-gray-500 mt-1">Professional Track</span>
-      </button>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 w-full">
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('RTIC')">
+          <i class="bi bi-hdd-network text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">RTIC</span>
+          <span class="text-xs text-gray-500 mt-1">Networks & Communications</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('IA')">
+          <i class="bi bi-cpu text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">IA</span>
+          <span class="text-xs text-gray-500 mt-1">Artificial Intelligence</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('GLSD')">
+          <i class="bi bi-code-square text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">GLSD</span>
+          <span class="text-xs text-gray-500 mt-1">Software Engineering</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('IVA')">
+          <i class="bi bi-gpu-card text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">IVA</span>
+          <span class="text-xs text-gray-500 mt-1">Image & Vision Processing</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('SIOD')">
+          <i class="bi bi-database text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">SIOD</span>
+          <span class="text-xs text-gray-500 mt-1">Information Systems</span>
+        </button>
+        
+        <button class="field-button bg-white/80 backdrop-blur-sm border-2 border-blue-700/50 text-blue-700 py-5 px-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-700 hover-scale flex flex-col items-center justify-center transition duration-300" onclick="navigateTo('PRO')">
+          <i class="bi bi-briefcase text-2xl mb-2"></i>
+          <span class="font-semibold text-lg">PRO</span>
+          <span class="text-xs text-gray-500 mt-1">Professional Track</span>
+        </button>
+      </div>
     </div>
     
     <!-- Featured section -->
@@ -289,6 +324,16 @@
       // Direct navigation to semester 1 by default
       setTimeout(() => {
         window.location.href = `Calc/index.html?field=${field}&semester=1`;
+      }, 300);
+    }
+    
+    function navigateToLicense(level) {
+      const button = event.currentTarget;
+      button.classList.add('scale-95', 'opacity-80');
+      
+      // Direct navigation to semester 1 by default
+      setTimeout(() => {
+        window.location.href = `Calc/index.html?level=${level}&semester=1`;
       }, 300);
     }
     

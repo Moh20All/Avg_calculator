@@ -159,7 +159,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const selectedField = urlParams.get('field') || 'RTIC';
+            const selectedField = urlParams.get('field');
+            const selectedLevel = urlParams.get('level');
+            const selectedOption = selectedLevel || selectedField || 'RTIC';
             const selectedSemester = urlParams.get('semester') || '1';
             
             const semester1Tab = document.getElementById('semester1-tab');
@@ -179,7 +181,11 @@
                 if (!this.classList.contains('active')) {
                     this.classList.add('active');
                     semester2Tab.classList.remove('active');
-                    window.location.href = `index.html?field=${selectedField}&semester=1`;
+                    if (selectedLevel) {
+                        window.location.href = `index.html?level=${selectedOption}&semester=1`;
+                    } else {
+                        window.location.href = `index.html?field=${selectedOption}&semester=1`;
+                    }
                 }
             });
             
@@ -189,12 +195,22 @@
                     this.classList.add('active');
                     semester1Tab.classList.remove('active');
                     
-                    // For fields other than RTIC, show alert and stay on semester 1
-                    if (selectedField !== 'RTIC') {
-                        alert('Semester 2 modules are currently only available for RTIC. Please check back later for other fields!');
-                        window.location.href = `index.html?field=${selectedField}&semester=1`;
+                    // Check if semester 2 is available for this field/level
+                    const availableForSemester2 = ['RTIC', 'L1', 'L2', 'L3'];
+                    
+                    if (availableForSemester2.includes(selectedOption)) {
+                        if (selectedLevel) {
+                            window.location.href = `index.html?level=${selectedOption}&semester=2`;
+                        } else {
+                            window.location.href = `index.html?field=${selectedOption}&semester=2`;
+                        }
                     } else {
-                        window.location.href = `index.html?field=${selectedField}&semester=2`;
+                        alert('Semester 2 modules are not yet available for this option. Please check back later!');
+                        if (selectedLevel) {
+                            window.location.href = `index.html?level=${selectedOption}&semester=1`;
+                        } else {
+                            window.location.href = `index.html?field=${selectedOption}&semester=1`;
+                        }
                     }
                 }
             });

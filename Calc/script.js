@@ -1,5 +1,56 @@
 // Module data configuration
 const moduleConfig = {
+  // License Modules - L1
+  L1: {
+    UE_Fondamentales: [
+      { name: "Algorithmique 1", coef: 3, hasTP: true, hasTD: true },
+      { name: "Systeme 1", coef: 3, hasTP: true, hasTD: true },
+      { name: "Structure Machine 1", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Analyse", coef: 2, hasTP: false, hasTD: true },
+      { name: "Algebre", coef: 2, hasTP: false, hasTD: true }
+    ],
+    UE_Transversale: [
+      { name: "Terminologie", coef: 1, hasTP: false, hasTD: false },
+      { name: "Methodes de Travail", coef: 1, hasTP: false, hasTD: false }
+    ]
+  },
+  
+  // License Modules - L2
+  L2: {
+    UE_Fondamentales: [
+      { name: "Algorithmique 2", coef: 3, hasTP: true, hasTD: true },
+      { name: "Systeme 2", coef: 3, hasTP: true, hasTD: true },
+      { name: "Structure de Données", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Logique mathématique", coef: 2, hasTP: false, hasTD: true },
+      { name: "Probabilités & Statistiques", coef: 2, hasTP: false, hasTD: true }
+    ],
+    UE_Transversale: [
+      { name: "Anglais Technique", coef: 1, hasTP: false, hasTD: false },
+      { name: "Economie d'Entreprise", coef: 1, hasTP: false, hasTD: false }
+    ]
+  },
+  
+  // License Modules - L3
+  L3: {
+    UE_Fondamentales: [
+      { name: "Compilation", coef: 3, hasTP: true, hasTD: true },
+      { name: "Programmation Orientée Objet", coef: 3, hasTP: true, hasTD: true },
+      { name: "Base de Données", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Réseaux", coef: 2, hasTP: true, hasTD: true },
+      { name: "Intelligence Artificielle", coef: 2, hasTP: true, hasTD: false }
+    ],
+    UE_Transversale: [
+      { name: "Projet Professionnel", coef: 1, hasTP: false, hasTD: false },
+      { name: "Anglais 3", coef: 1, hasTP: false, hasTD: false }
+    ]
+  },
+  
   // RTIC Modules
   RTIC: {
       UE_Fondamentales: [
@@ -101,6 +152,57 @@ const moduleConfig = {
 // Semester 2 module data will be populated here
 // This is a placeholder for future implementation
 const semesterTwoModules = {
+  // License Modules - L1 Semester 2
+  L1: {
+    UE_Fondamentales: [
+      { name: "Algorithmique 2", coef: 3, hasTP: true, hasTD: true },
+      { name: "Architecture des ordinateurs", coef: 3, hasTP: true, hasTD: true },
+      { name: "Programmation 1", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Analyse 2", coef: 2, hasTP: false, hasTD: true },
+      { name: "Algebre 2", coef: 2, hasTP: false, hasTD: true }
+    ],
+    UE_Transversale: [
+      { name: "Bureautique", coef: 1, hasTP: true, hasTD: false },
+      { name: "Introduction aux Bases de Données", coef: 1, hasTP: true, hasTD: false }
+    ]
+  },
+  
+  // License Modules - L2 Semester 2
+  L2: {
+    UE_Fondamentales: [
+      { name: "Bases de Données", coef: 3, hasTP: true, hasTD: true },
+      { name: "Réseaux", coef: 3, hasTP: true, hasTD: true },
+      { name: "Théorie des langages", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Génie Logiciel", coef: 2, hasTP: true, hasTD: true },
+      { name: "Systèmes d'Information", coef: 2, hasTP: true, hasTD: true }
+    ],
+    UE_Transversale: [
+      { name: "Droit Informatique", coef: 1, hasTP: false, hasTD: false },
+      { name: "Analyse Numérique", coef: 1, hasTP: false, hasTD: true }
+    ]
+  },
+  
+  // License Modules - L3 Semester 2
+  L3: {
+    UE_Fondamentales: [
+      { name: "Programmation Web", coef: 3, hasTP: true, hasTD: true },
+      { name: "Sécurité Informatique", coef: 3, hasTP: true, hasTD: true },
+      { name: "Administration Système", coef: 3, hasTP: true, hasTD: true }
+    ],
+    UE_Méthodologique: [
+      { name: "Projet de Fin d'Études", coef: 5, hasTP: true, hasTD: false },
+      { name: "Stage", coef: 3, hasTP: true, hasTD: false }
+    ],
+    UE_Transversale: [
+      { name: "Communication Professionnelle", coef: 1, hasTP: false, hasTD: false },
+      { name: "Anglais Technique Avancé", coef: 1, hasTP: false, hasTD: false }
+    ]
+  },
+  
   // RTIC Semester 2 Modules
   RTIC: {
     UE_Fondamentales: [
@@ -491,9 +593,12 @@ document.addEventListener("DOMContentLoaded", function() {
         doc.setFont(undefined, 'normal');
         doc.text("Department of Computer Science", 105, 35, { align: 'center' });
         
-        const selectedField = getUrlParameter('field') || 'RTIC';
+        const selectedField = getUrlParameter('field');
+        const selectedLevel = getUrlParameter('level');
+        const selectedOption = selectedLevel || selectedField || 'RTIC';
         const selectedSemester = getUrlParameter('semester') || '1';
-        const field = `Field: ${selectedField}`;
+        const programType = selectedLevel ? 'License' : 'Master';
+        const field = `${programType}: ${selectedOption}`;
         const currentDate = new Date();
         const year = `Year: ${currentDate.getFullYear()}`;
         const semester = `Semester: ${selectedSemester}`;
@@ -585,7 +690,7 @@ document.addEventListener("DOMContentLoaded", function() {
         doc.text(`Generated on: ${dateStr}`, 105, doc.internal.pageSize.height - 10, { align: 'center' });
 
         // Save the PDF
-        doc.save(`${selectedField}_Semester${selectedSemester}_Grades_${dateStr}.pdf`);
+        doc.save(`${selectedOption}_Semester${selectedSemester}_Grades_${dateStr}.pdf`);
       } catch (error) {
         console.error("Error generating PDF:", error);
         alert("Error generating PDF. Please try again.");
@@ -599,28 +704,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Initialize the application
   function init() {
-    // Get selected field and semester from URL
-    const selectedField = getUrlParameter('field') || 'RTIC';
+    // Get selected field/level and semester from URL
+    const selectedField = getUrlParameter('field');
+    const selectedLevel = getUrlParameter('level');
+    const selectedOption = selectedLevel || selectedField || 'RTIC';
     const selectedSemester = getUrlParameter('semester') || '1';
     
     // Set title
-    setTitle(selectedField, selectedSemester);
+    setTitle(selectedOption, selectedSemester);
     
-    // Create table based on selected field and semester
+    // Create table based on selected field/level and semester
     if (selectedSemester === '2') {
       // Use semester 2 modules if available
-      if (semesterTwoModules[selectedField] && 
-          (semesterTwoModules[selectedField].UE_Fondamentales.length > 0 || 
-           semesterTwoModules[selectedField].UE_Méthodologique.length > 0 || 
-           semesterTwoModules[selectedField].UE_Transversale.length > 0)) {
-        createTable(semesterTwoModules[selectedField]);
+      if (semesterTwoModules[selectedOption] && 
+          (semesterTwoModules[selectedOption].UE_Fondamentales.length > 0 || 
+           semesterTwoModules[selectedOption].UE_Méthodologique.length > 0 || 
+           semesterTwoModules[selectedOption].UE_Transversale.length > 0)) {
+        createTable(semesterTwoModules[selectedOption]);
       } else {
-        // If no semester 2 modules defined for this field, default to semester 1
-        alert("Semester 2 modules not yet defined for this field. Showing semester 1 instead.");
-        window.location.href = `index.html?field=${selectedField}&semester=1`;
+        // If no semester 2 modules defined for this field/level, default to semester 1
+        alert("Semester 2 modules not yet defined for this option. Showing semester 1 instead.");
+        if (selectedLevel) {
+          window.location.href = `index.html?level=${selectedOption}&semester=1`;
+        } else {
+          window.location.href = `index.html?field=${selectedOption}&semester=1`;
+        }
       }
-    } else if (moduleConfig[selectedField]) {
-      createTable(moduleConfig[selectedField]);
+    } else if (moduleConfig[selectedOption]) {
+      createTable(moduleConfig[selectedOption]);
     } else {
       createTable(moduleConfig.RTIC); // Default to RTIC
     }
@@ -633,8 +744,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         calculateAverage();
-          }
-      });
+      }
+    });
   }
 
   // Start the application
